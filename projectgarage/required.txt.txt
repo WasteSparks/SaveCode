@@ -1,0 +1,106 @@
+GarageMenage ER
+
+Registers
+registerid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+username varchar(95) NOT NULL,
+firstname varchar(95) NOT NULL,
+lastname varchar(95) NOT NULL,
+email varchar(95) NOT NULL,
+password varchar(95) NOT NULL
+
+
+Logins
+logid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+username varchar(95) NOT NULL,
+password varchar(95) NOT NULL,
+urole varchar(10) NOT NULL
+
+
+cars
+
+
+customers
+customersid
+name
+contactnumber
+
+
+services
+servid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+servicename varchar(95) NOT NULL, engine repair  cars restoreration tuning modify engine 
+install parts
+
+
+inventory
+
+Customer (CustomerID, Name, ContactDetails)
+    |
+    | 1:M
+    |
+Vehicle (VehicleID, CustomerID, Make, Model, Year, VIN)
+    |
+    | 1:M
+    |
+Appointment (AppointmentID, VehicleID, Date, Time)
+    |        |
+    | M:M    | M:M
+    |        |
+Service (ServiceID, Description, Cost)  Employee (EmployeeID, Name, Role)
+    |
+    | 1:1
+    |
+Invoice (InvoiceID, AppointmentID, Amount, Date)
+    |
+    | M:M
+    |
+Inventory (InventoryID, Name, Quantity, Cost)
+    |
+    | 1:M
+    |
+Supplier (SupplierID, Name, ContactDetails)
+    |
+    | M:M
+    |
+User (UserID, Username, Password, Email)
+    |
+    | M:M
+    |
+Role (RoleID, RoleName)
+    |
+    | 1:1
+    |
+Customer (CustomerID, UserID)
+
+ERD Description:
+Customer:
+Attributes: CustomerID, Name, ContactDetails
+Relationships: One-to-Many with Vehicle
+
+Vehicle:
+Attributes: VehicleID, CustomerID, Make, Model, Year, VIN
+Relationships: One-to-Many with Appointment
+
+Appointment:
+Attributes: AppointmentID, VehicleID, Date, Time
+Relationships: Many-to-Many with Service, Many-to-Many with Employee, One-to-One with Invoice
+
+Service:
+Attributes: ServiceID, Description, Cost
+Relationships: Many-to-Many with Appointment, Many-to-Many with Inventory
+
+Employee:
+Attributes: EmployeeID, Name, Role
+Relationships: Many-to-Many with Appointment
+
+Invoice:
+Attributes: InvoiceID, AppointmentID, Amount, Date
+Relationships: One-to-One with Appointment
+
+Inventory:
+Attributes: InventoryID, Name, Quantity, Cost
+Relationships: Many-to-Many with Service, One-to-Many with Supplier
+
+Supplier:
+Attributes: SupplierID, Name, ContactDetails
+Relationships: One-to-Many with Inventory
+Would you like any modifications or additional details on this ERD?
